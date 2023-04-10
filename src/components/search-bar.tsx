@@ -20,6 +20,7 @@ export function SearchBar({ onSubmit }: { onSubmit: (val: string) => void }) {
       </label>
       <input
         required
+        ref={ref}
         id="search"
         name="query"
         type="search"
