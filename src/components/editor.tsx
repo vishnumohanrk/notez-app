@@ -3,11 +3,9 @@ import { EditorContent } from '@tiptap/react';
 
 import { EditorToolbar } from './editor-toolbar';
 
-export function TipTapEditor({ editor }: { editor: Editor | null }) {
-  if (!editor) return null;
-
+export function TipTapEditor({ editor }: { editor: Editor }) {
   return (
-    <div className="m-4 rounded-md border">
+    <div className="my-4 rounded-md border">
       <EditorToolbar editor={editor} />
       <EditorContent editor={editor} />
     </div>

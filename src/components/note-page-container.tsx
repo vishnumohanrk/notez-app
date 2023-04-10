@@ -11,7 +11,7 @@ export function NotePageContainer({ children }: RCProps) {
   return (
     <main
       className={twMerge(
-        'relative mx-auto max-w-screen-xl flex-1',
+        'relative mx-auto max-w-screen-xl flex-1 p-4',
         !pathName.includes('/note') && 'max-lg:hidden'
       )}
     >

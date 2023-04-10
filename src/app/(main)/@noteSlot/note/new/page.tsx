@@ -4,7 +4,8 @@
 import { useRef } from 'react';
 
 import { TipTapEditor } from '@/components/editor';
-import { HomeLink } from '@/components/home-link';
+import { NotePageHeader } from '@/components/note-page-header';
+import { SaveButton } from '@/components/save-button';
 import { useEditorInstance } from '@/hooks/use-editor-instance';
 
 export default function NewNotePage() {
@@ -15,10 +16,11 @@ export default function NewNotePage() {
     content: '<h2>Note Content</h2>',
   });
 
+  if (!editor) return null;
+
   return (
     <>
-      <div className="flex items-center p-4">
-        <HomeLink />
+      <NotePageHeader>
         <label htmlFor="newNoteTitle" className="sr-only">
           New Note Title
         </label>
@@ -28,18 +30,11 @@ export default function NewNotePage() {
           type="text"
           id="newNoteTitle"
           defaultValue="Note Title"
-          className="line-clamp-1 h-12 w-full flex-1 rounded-md border bg-transparent text-4xl font-bold leading-tight lg:px-4"
+          className="line-clamp-1 h-12 w-full rounded-md border bg-transparent text-4xl font-bold leading-tight"
         />
-      </div>
+      </NotePageHeader>
       <TipTapEditor editor={editor} />
-      <div className="sticky bottom-0 flex w-full justify-end border-t bg-slate-800 p-4">
-        <button
-          type="button"
-          className="rounded-md bg-indigo-800 px-8 py-2 font-semibold"
-        >
-          Create
-        </button>
-      </div>
+      <SaveButton onClick={console.log} text="Create Note" />
     </>
   );
 }

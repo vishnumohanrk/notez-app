@@ -3,7 +3,7 @@
 import { Check, Edit2 } from 'lucide-react';
 import { memo, useRef, useState } from 'react';
 
-import { HomeLink } from './home-link';
+import { NotePageHeader } from './note-page-header';
 
 type EditTitleProps = {
   text: string;
@@ -30,8 +30,7 @@ export const NoteTitle = memo(({ noteId, text }: EditTitleProps) => {
   const Icon = isEditing ? Check : Edit2;
 
   return (
-    <div className="flex items-center p-4">
-      <HomeLink />
+    <NotePageHeader>
       {isEditing ? (
         <input
           required
@@ -54,7 +53,7 @@ export const NoteTitle = memo(({ noteId, text }: EditTitleProps) => {
       >
         <Icon className="h-5 w-5" />
       </button>
-    </div>
+    </NotePageHeader>
   );
 });
 
