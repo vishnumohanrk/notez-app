@@ -1,15 +1,16 @@
 'use client';
 
-import { ArrowLeft, Check, Edit2, Trash } from 'lucide-react';
-import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { Check, Edit2 } from 'lucide-react';
+import { memo, useRef, useState } from 'react';
+
+import { HomeLink } from './home-link';
 
 type EditTitleProps = {
   text: string;
   noteId: string;
 };
 
-export function NoteTitle({ noteId, text }: EditTitleProps) {
+export const NoteTitle = memo(({ noteId, text }: EditTitleProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -29,7 +30,7 @@ export function NoteTitle({ noteId, text }: EditTitleProps) {
   const Icon = isEditing ? Check : Edit2;
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center p-4">
       <HomeLink />
       {isEditing ? (
         <input
@@ -46,6 +47,7 @@ export function NoteTitle({ noteId, text }: EditTitleProps) {
         <h2 className={compClass}>{text}</h2>
       )}
       <button
+        type="button"
         onClick={toggle}
         title={isEditing ? 'Save' : 'Edit Note Title'}
         className="ml-1 h-12 rounded-md border px-3 transition-colors hover:bg-slate-800"
@@ -54,18 +56,8 @@ export function NoteTitle({ noteId, text }: EditTitleProps) {
       </button>
     </div>
   );
-}
+});
+
+NoteTitle.displayName = 'EditNoteTitleComp';
 
 const compClass = 'h-12 flex-1 line-clamp-1 text-4xl font-bold leading-tight';
-
-function HomeLink() {
-  return (
-    <Link
-      href="/"
-      className="inline-flex h-12 w-12 items-center underline lg:hidden"
-    >
-      <ArrowLeft size={32} />
-      <span className="sr-only">Back</span>
-    </Link>
-  );
-}

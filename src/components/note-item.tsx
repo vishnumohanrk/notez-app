@@ -6,7 +6,6 @@ export function NoteItem({ id, content, createdAt, title }: Note) {
   return (
     <li>
       <Link
-        // @ts-expect-error TODO:yet to implement
         href={`/note/${id}`}
         className="flex flex-col rounded-md border p-4 text-slate-400 transition-colors hover:bg-slate-800"
       >

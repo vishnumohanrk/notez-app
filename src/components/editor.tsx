@@ -1,21 +1,13 @@
-'use client';
-
-import { EditorContent, useEditor } from '@tiptap/react';
-
-import { editorOptions } from '@/lib/utils';
+import type { Editor } from '@tiptap/react';
+import { EditorContent } from '@tiptap/react';
 
 import { EditorToolbar } from './editor-toolbar';
 
-export function Editor() {
-  const editor = useEditor({
-    ...editorOptions,
-    content: `<h2>Note Content</h2>`,
-  });
-
+export function TipTapEditor({ editor }: { editor: Editor | null }) {
   if (!editor) return null;
 
   return (
-    <div className="my-4 rounded-md border">
+    <div className="m-4 rounded-md border">
       <EditorToolbar editor={editor} />
       <EditorContent editor={editor} />
     </div>

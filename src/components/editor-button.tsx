@@ -50,4 +50,4 @@ export function EditorButton({
 }
 
 const className =
-  'inline-flex h-12 w-12 items-center justify-center border bg-slate-900 transition-colors first:rounded-l-md last:rounded-r-md focus-visible:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40 data-[state=on]:!bg-blue-900 enabled:hover:bg-slate-700 lg:h-10 lg:w-10 [&:not(:last-child)]:border-r-0';
+  'inline-flex h-12 w-12 items-center justify-center border bg-slate-900 transition-colors first:rounded-l-md last:rounded-r-md focus-visible:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40 data-[state=on]:!bg-indigo-800 enabled:hover:bg-slate-700 lg:h-10 lg:w-10 [&:not(:last-child)]:border-r-0';

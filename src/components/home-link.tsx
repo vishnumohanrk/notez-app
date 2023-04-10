@@ -1,14 +1,14 @@
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
-export function HomeLink({ variant = 'full' }: { variant?: 'icon' | 'full' }) {
+export function HomeLink() {
   return (
     <Link
       href="/"
-      className="inline-flex h-12 w-12 items-center justify-center underline"
+      className="inline-flex h-12 w-12 items-center underline lg:hidden"
     >
-      <ArrowLeft className="h-6 w-6" />
-      <span>Go Home</span>
+      <ArrowLeft size={32} />
+      <span className="sr-only">Back</span>
     </Link>
   );
 }
