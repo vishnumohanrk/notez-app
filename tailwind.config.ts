@@ -1,3 +1,4 @@
+import typography from '@tailwindcss/typography';
 import scrollbar from 'tailwind-scrollbar';
 import type { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
@@ -19,7 +20,7 @@ const twConfig: Config = {
     },
   },
 
-  plugins: [scrollbar],
+  plugins: [scrollbar, typography],
 };
 
 export default twConfig;

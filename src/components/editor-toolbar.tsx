@@ -1,13 +1,11 @@
-'use client';
-
 import * as Toolbar from '@radix-ui/react-toolbar';
+import type { Editor } from '@tiptap/react';
 import {
   AlignCenter,
   AlignJustify,
   AlignLeft,
   AlignRight,
   Bold,
-  Code,
   Code2,
   Heading1,
   Heading2,
@@ -15,6 +13,8 @@ import {
   Heading4,
   Highlighter,
   Italic,
+  List,
+  ListOrdered,
   Quote,
   Redo,
   RemoveFormatting,
@@ -28,62 +28,171 @@ import {
 
 import { EditorButton } from './editor-button';
 
-export function EditorToolbar() {
+// TODO REFACTOR
+export function EditorToolbar({ editor }: { editor: Editor }) {
   return (
     <Toolbar.Root
       aria-label="Formatting options"
       className="sticky top-0 flex h-[4.5rem] flex-nowrap items-center gap-2 overflow-auto border-b bg-slate-800 px-4 scrollbar-none lg:h-14 [&>*]:shrink-0"
     >
-      <div className="flex">
+      <div>
         <EditorButton
           Icon={Undo}
           title="undo"
           variant="button"
-          onClick={console.log}
+          onPress={() => editor.chain().focus().undo().run()}
         />
         <EditorButton
           Icon={Redo}
           title="redo"
           variant="button"
-          onClick={console.log}
+          onPress={() => editor.chain().focus().undo().run()}
         />
       </div>
-      <Toolbar.ToggleGroup type="multiple" aria-label="Text formatting">
-        <EditorButton Icon={Bold} title="bold" />
-        <EditorButton Icon={Italic} title="italic" />
-        <EditorButton Icon={Underline} title="underline" />
-        <EditorButton Icon={Strikethrough} title="strike" />
-        <EditorButton Icon={Subscript} title="subscript" />
-        <EditorButton Icon={Superscript} title="superscript" />
-        <EditorButton Icon={Highlighter} title="highlight" />
-        <EditorButton Icon={Code} title="code" />
-      </Toolbar.ToggleGroup>
-      <Toolbar.ToggleGroup type="multiple" aria-label="Block Options">
-        <EditorButton Icon={Heading1} title="Heading1" />
-        <EditorButton Icon={Heading2} title="Heading2" />
-        <EditorButton Icon={Heading3} title="Heading3" />
-        <EditorButton Icon={Heading4} title="Heading4" />
-        <EditorButton Icon={Quote} title="blockquote" />
-        <EditorButton Icon={Code2} title="codeBlock" />
-      </Toolbar.ToggleGroup>
-      <Toolbar.ToggleGroup type="single" aria-label="Alignment">
-        <EditorButton Icon={AlignLeft} title="Align Left" />
-        <EditorButton Icon={AlignJustify} title="Justify" />
-        <EditorButton Icon={AlignCenter} title="Align Center" />
-        <EditorButton Icon={AlignRight} title="Align Right" />
-      </Toolbar.ToggleGroup>
-      <div className="flex flex-1 justify-end">
+      <div>
+        <EditorButton
+          Icon={Bold}
+          title="bold"
+          active={editor.isActive('bold')}
+          onPress={() => editor.chain().focus().toggleBold().run()}
+        />
+        <EditorButton
+          Icon={Italic}
+          title="italic"
+          active={editor.isActive('italic')}
+          onPress={() => editor.chain().focus().toggleItalic().run()}
+        />
+        <EditorButton
+          Icon={Underline}
+          title="underline"
+          active={editor.isActive('underline')}
+          onPress={() => editor.chain().focus().toggleUnderline().run()}
+        />
+        <EditorButton
+          title="strike"
+          Icon={Strikethrough}
+          active={editor.isActive('strike')}
+          onPress={() => editor.chain().focus().toggleStrike().run()}
+        />
+        <EditorButton
+          title="subscript"
+          Icon={Subscript}
+          active={editor.isActive('subscript')}
+          onPress={() => editor.chain().focus().toggleSubscript().run()}
+        />
+        <EditorButton
+          title="superscript"
+          Icon={Superscript}
+          active={editor.isActive('superscript')}
+          onPress={() => editor.chain().focus().toggleSuperscript().run()}
+        />
+        <EditorButton
+          title="highlight"
+          Icon={Highlighter}
+          active={editor.isActive('highlight')}
+          onPress={() => editor.chain().focus().toggleHighlight().run()}
+        />
+      </div>
+      <div>
+        <EditorButton
+          Icon={Heading1}
+          title="Heading1"
+          active={editor.isActive('heading', { level: 1 })}
+          onPress={() =>
+            editor.chain().focus().toggleHeading({ level: 1 }).run()
+          }
+        />
+        <EditorButton
+          Icon={Heading2}
+          title="Heading2"
+          active={editor.isActive('heading', { level: 2 })}
+          onPress={() =>
+            editor.chain().focus().toggleHeading({ level: 2 }).run()
+          }
+        />
+        <EditorButton
+          Icon={Heading3}
+          title="Heading3"
+          active={editor.isActive('heading', { level: 3 })}
+          onPress={() =>
+            editor.chain().focus().toggleHeading({ level: 3 }).run()
+          }
+        />
+        <EditorButton
+          Icon={Heading4}
+          title="Heading4"
+          active={editor.isActive('heading', { level: 4 })}
+          onPress={() =>
+            editor.chain().focus().toggleHeading({ level: 4 }).run()
+          }
+        />
+        <EditorButton
+          Icon={Quote}
+          title="blockquote"
+          active={editor.isActive('blockquote')}
+          onPress={() => editor.chain().focus().toggleBlockquote().run()}
+        />
+        <EditorButton
+          Icon={Code2}
+          title="codeBlock"
+          active={editor.isActive('codeBlock')}
+          onPress={() => editor.chain().focus().toggleCodeBlock().run()}
+        />
+      </div>
+      <div>
+        <EditorButton
+          Icon={ListOrdered}
+          title="Ordered List"
+          active={editor.isActive('orderedList')}
+          onPress={() => editor.chain().focus().toggleOrderedList().run()}
+        />
+        <EditorButton
+          Icon={List}
+          title="Bullet List"
+          active={editor.isActive('bulletList')}
+          onPress={() => editor.chain().focus().toggleBulletList().run()}
+        />
+      </div>
+      <div>
+        <EditorButton
+          Icon={AlignLeft}
+          title="Align Left"
+          active={editor.isActive({ textAlign: 'left' })}
+          onPress={() => editor.chain().focus().setTextAlign('left').run()}
+        />
+        <EditorButton
+          Icon={AlignJustify}
+          title="Justify"
+          active={editor.isActive({ textAlign: 'justify' })}
+          onPress={() => editor.chain().focus().setTextAlign('justify').run()}
+        />
+        <EditorButton
+          Icon={AlignCenter}
+          title="Align Center"
+          active={editor.isActive({ textAlign: 'center' })}
+          onPress={() => editor.chain().focus().setTextAlign('center').run()}
+        />
+        <EditorButton
+          Icon={AlignRight}
+          title="Align Right"
+          active={editor.isActive({ textAlign: 'right' })}
+          onPress={() => editor.chain().focus().setTextAlign('right').run()}
+        />
+      </div>
+      <div className="inline-flex flex-1 justify-end">
         <EditorButton
           variant="button"
-          onClick={console.log}
           Icon={RemoveFormatting}
           title="Clear Formatting"
+          onPress={() =>
+            editor.chain().focus().unsetAllMarks().clearNodes().run()
+          }
         />
         <EditorButton
           Icon={Trash}
           variant="button"
           title="Clear Editor"
-          onClick={console.log}
+          onPress={() => editor.chain().focus().clearContent().run()}
         />
       </div>
     </Toolbar.Root>
