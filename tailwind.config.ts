@@ -1,3 +1,4 @@
+import scrollbar from 'tailwind-scrollbar';
 import type { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
@@ -11,10 +12,14 @@ const twConfig: Config = {
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },
+
+      borderColor: ({ theme }) => ({
+        DEFAULT: theme('colors.slate.700'),
+      }),
     },
   },
 
-  plugins: [],
+  plugins: [scrollbar],
 };
 
 export default twConfig;

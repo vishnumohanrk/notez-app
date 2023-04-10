@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={fontSans.variable}>
+    <html lang="en" className={`${fontSans.variable} [color-scheme:dark]`}>
       <body className="bg-slate-900 font-sans text-slate-50 antialiased">
         {children}
       </body>
