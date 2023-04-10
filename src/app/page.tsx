@@ -1,13 +1,25 @@
-export default function AppHome() {
+import { Login } from '@/components/login';
+import { getUser } from '@/lib/auth';
+
+export default async function AppHome() {
+  const user = await getUser();
+
   return (
-    <article className="mx-auto max-w-screen-xl">
-      <h2 className="text-4xl font-bold">Lorem, ipsum.</h2>
-      <p className="my-4">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nam
-        nesciunt non vel eum natus nostrum quod eaque illo reprehenderit,
-        deleniti provident? Exercitationem assumenda quisquam aut pariatur
-        fugit, in ea?
-      </p>
-    </article>
+    <main className="grid place-items-center">
+      <Login isLoggedin={!!user} />
+      {user ? (
+        <div className="flex gap-2">
+          <img
+            alt="avatar"
+            src={user.image || ''}
+            className="h-12 w-12 rounded-full"
+          />
+          <div>
+            <p>{user.name}</p>
+            <p>{user.email}</p>
+          </div>
+        </div>
+      ) : null}
+    </main>
   );
 }

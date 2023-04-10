@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={fontSans.variable}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="bg-slate-900 font-sans text-slate-50 antialiased">
+        {children}
+      </body>
     </html>
   );
 }
