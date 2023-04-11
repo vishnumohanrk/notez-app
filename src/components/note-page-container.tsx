@@ -12,7 +12,7 @@ export function NotePageContainer({ children }: RCProps) {
     <main
       className={clsx(
         'relative mx-auto max-w-screen-xl flex-1 p-4',
-        !pathName.includes('/note') && 'max-lg:hidden'
+        !pathName?.includes('/note') && 'max-lg:hidden'
       )}
     >
       {children}

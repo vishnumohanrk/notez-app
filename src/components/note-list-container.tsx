@@ -23,7 +23,7 @@ export function NoteListContainer({ children, userProfile }: Props) {
     <aside
       className={clsx(
         'sticky top-0 h-screen w-full overflow-y-scroll border-r p-4 scrollbar-thin scrollbar-track-slate-800 scrollbar-thumb-slate-700 lg:w-96',
-        pathName.includes('/note') && 'max-lg:hidden'
+        pathName?.includes('/note') && 'max-lg:hidden'
       )}
     >
       <SearchBar onSubmit={handleSubmit}>{userProfile}</SearchBar>
