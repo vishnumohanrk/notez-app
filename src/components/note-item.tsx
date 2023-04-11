@@ -2,7 +2,7 @@ import type { Note } from '@prisma/client';
 import { format } from 'date-fns';
 import Link from 'next/link';
 
-export function NoteItem({ id, content, createdAt, title }: Note) {
+export function NoteItem({ id, text, createdAt, title }: Note) {
   return (
     <li>
       <Link
@@ -12,7 +12,7 @@ export function NoteItem({ id, content, createdAt, title }: Note) {
         <h2 className="mb-1 truncate text-2xl font-semibold text-slate-50">
           {title}
         </h2>
-        <p className="line-clamp-3 text-sm">{content}</p>
+        <p className="line-clamp-3 text-sm">{text}</p>
         <p className="mt-2 flex justify-end text-xs">
           {format(createdAt, 'MMM d')}
         </p>

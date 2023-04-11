@@ -2,7 +2,15 @@
 
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
+import { useMutation } from '@/hooks/use-mutation';
+
 export function DeleteNote({ id }: { id: string }) {
+  const { mutate } = useMutation();
+
+  function deleteNote() {
+    mutate(`/api/note/${id}`, { method: 'DELETE' });
+  }
+
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger className="font-semibold underline">
@@ -24,7 +32,7 @@ export function DeleteNote({ id }: { id: string }) {
                 Cancel
               </AlertDialog.Cancel>
               <AlertDialog.Action
-                onClick={console.log}
+                onClick={deleteNote}
                 className="button bg-red-800 focus:ring-red-800"
               >
                 Yes, Delete

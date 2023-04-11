@@ -1,11 +1,16 @@
+import clsx from 'clsx';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 import type { RCProps } from '@/lib/types';
 
-export function NotePageHeader({ children }: RCProps) {
+type NotePageHeaderProps = RCProps & {
+  className?: string;
+};
+
+export function NotePageHeader({ children, className }: NotePageHeaderProps) {
   return (
-    <div className="flex items-center">
+    <div className={clsx('flex items-center', className)}>
       <Link
         href="/"
         className="inline-flex h-12 w-12 items-center underline lg:hidden"

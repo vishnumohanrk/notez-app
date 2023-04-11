@@ -1,7 +1,10 @@
 'use client';
 
+import clsx from 'clsx';
 import { Check, Edit2 } from 'lucide-react';
 import { memo, useRef, useState } from 'react';
+
+import { useMutation } from '@/hooks/use-mutation';
 
 import { NotePageHeader } from './note-page-header';
 
@@ -14,13 +17,18 @@ export const NoteTitle = memo(({ noteId, text }: EditTitleProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isEditing, setIsEditing] = useState(false);
 
+  const { isMutating, mutate } = useMutation();
+
   function toggle() {
     const inp = ref.current;
 
     if (isEditing) {
       setIsEditing(false);
       if (inp?.validity.valid) {
-        console.log({ noteId, newTitle: inp.value });
+        mutate(`/api/note/${noteId}`, {
+          method: 'PUT',
+          body: JSON.stringify({ title: inp.value }),
+        });
       }
     } else {
       setIsEditing(true);
@@ -30,7 +38,9 @@ export const NoteTitle = memo(({ noteId, text }: EditTitleProps) => {
   const Icon = isEditing ? Check : Edit2;
 
   return (
-    <NotePageHeader>
+    <NotePageHeader
+      className={clsx(isMutating && 'pointer-events-none opacity-50')}
+    >
       {isEditing ? (
         <input
           required

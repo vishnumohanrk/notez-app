@@ -2,23 +2,20 @@ import { format } from 'date-fns';
 
 import { DeleteNote } from '@/components/delete-note';
 import { NotePageContent } from '@/components/note-page-content';
+import { getNoteById } from '@/lib/api';
 
-export default function NotePage({
-  params: { id },
-}: {
+type NotePageProps = {
   params: { id: string };
-}) {
-  // const note =
+};
+
+export default async function NotePage({ params: { id } }: NotePageProps) {
+  const note = await getNoteById(id);
 
   return (
-    <NotePageContent
-      id="10"
-      title="Lorem Ipsum"
-      content="<h2>Hello World!!!</h2>"
-    >
+    <NotePageContent id={note.id} title={note.title} html={note.html}>
       <div className="mt-2 flex justify-between text-sm text-slate-400">
-        <p>Last Modified on {format(new Date(), 'MMM dd')}</p>
-        <DeleteNote id="10" />
+        <p>Last Modified on {format(note.updatedAt, 'MMM dd')}</p>
+        <DeleteNote id={note.id} />
       </div>
     </NotePageContent>
   );

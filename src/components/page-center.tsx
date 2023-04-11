@@ -11,9 +11,9 @@ export function PageCenter({
       <h2 className="text-3xl font-semibold tracking-wide text-slate-400">
         {text}
       </h2>
-      <div className="my-2">
+      <div className="my-4">
         {children || (
-          <Link href="/" className="font-medium underline">
+          <Link href="/note" className="font-medium underline">
             Go Home
           </Link>
         )}
