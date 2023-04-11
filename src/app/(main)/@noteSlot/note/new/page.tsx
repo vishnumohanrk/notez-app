@@ -57,3 +57,5 @@ export default function NewNotePage() {
     </div>
   );
 }
+
+export const dynamic = 'force-static';
