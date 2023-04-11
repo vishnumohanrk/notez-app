@@ -24,7 +24,7 @@ export const editorOptions: Partial<EditorOptions> = {
   editorProps: {
     attributes: {
       class:
-        'prose prose-invert max-w-none min-h-screen p-4 focus:outline-none prose-a:cursor-pointer',
+        'prose prose-invert max-w-none min-h-[calc(100vh-14rem)] p-4 focus:outline-none prose-a:cursor-pointer',
     },
   },
 };

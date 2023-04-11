@@ -20,7 +20,7 @@ export function SearchBar({ onSubmit, children }: SearchBarProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="sticky top-0 w-full p-4">
+    <form onSubmit={handleSubmit} className="sticky top-0 mb-4 w-full">
       <label htmlFor="search" className="sr-only">
         Search Notes
       </label>
@@ -37,7 +37,7 @@ export function SearchBar({ onSubmit, children }: SearchBarProps) {
       <button
         type="submit"
         title="Search"
-        className="absolute left-4 h-12 px-4"
+        className="absolute left-0 h-12 px-4"
       >
         <Search size={20} />
       </button>

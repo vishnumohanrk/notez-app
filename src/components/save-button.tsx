@@ -9,7 +9,7 @@ export function SaveButton({ onClick, text }: SaveButtonProps) {
       <button
         type="button"
         onClick={onClick}
-        className="button bg-indigo-800 focus:ring-indigo-800"
+        className="button bg-indigo-700 transition-colors focus:ring-indigo-700 focus-visible:bg-indigo-800 hover:bg-indigo-800"
       >
         {text}
       </button>

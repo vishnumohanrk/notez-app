@@ -8,9 +8,9 @@ export async function NoteListContent({ label }: { label?: string }) {
 
   return (
     <>
-      <NewNote />
       <nav>
-        <ul className="space-y-4 px-4 pb-24">
+        <NewNote variant={notes.length ? 'floating' : 'full'} />
+        <ul className="space-y-4 pb-16">
           {notes.map((i) => (
             <NoteItem key={i.id} {...i} />
           ))}

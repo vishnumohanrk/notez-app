@@ -21,7 +21,7 @@ export function useMutation() {
         startTransition(() => {
           router.refresh();
 
-          // redirect not working in router handlers
+          // redirect not working in route handlers
           if (res.url) {
             router.push(res.url);
           }

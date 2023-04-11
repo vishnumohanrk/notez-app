@@ -7,14 +7,14 @@ import { signOut } from 'next-auth/react';
 
 export function UserProfilePopover({ email, image, name }: Omit<User, 'id'>) {
   function logOut() {
-    signOut({ callbackUrl: '/login' });
+    signOut({ callbackUrl: '/logout' });
   }
 
   if (!image) return null;
 
   return (
     <Popover.Root>
-      <Popover.Trigger className="absolute right-4 h-12 px-2">
+      <Popover.Trigger className="absolute right-0 h-12 px-2">
         <img
           src={image}
           alt={`${name} profile pic`}

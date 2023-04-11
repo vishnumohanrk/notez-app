@@ -24,7 +24,7 @@ export const NoteTitle = memo(({ noteId, text }: EditTitleProps) => {
 
     if (isEditing) {
       setIsEditing(false);
-      if (inp?.validity.valid) {
+      if (inp?.validity.valid && inp.value !== text) {
         mutate(`/api/note/${noteId}`, {
           method: 'PUT',
           body: JSON.stringify({ title: inp.value }),

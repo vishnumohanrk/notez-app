@@ -22,7 +22,7 @@ export function NoteListContainer({ children, userProfile }: Props) {
   return (
     <aside
       className={clsx(
-        'sticky top-0 h-screen w-full overflow-y-auto border-r scrollbar-thin scrollbar-thumb-slate-800 lg:w-96',
+        'sticky top-0 h-screen w-full overflow-y-scroll border-r p-4 scrollbar-thin scrollbar-track-slate-800 scrollbar-thumb-slate-700 lg:w-96',
         pathName.includes('/note') && 'max-lg:hidden'
       )}
     >

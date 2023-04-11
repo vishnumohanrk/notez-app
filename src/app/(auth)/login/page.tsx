@@ -3,7 +3,7 @@ import { PageCenter } from '@/components/page-center';
 
 export default function LoginPage() {
   return (
-    <PageCenter text="Please Sign In/Sign Up to use the App">
+    <PageCenter text="Log in to continue">
       <Login />
     </PageCenter>
   );
