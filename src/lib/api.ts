@@ -1,7 +1,7 @@
 import 'server-only';
 
-import type { Note } from '@prisma/client';
 import { notFound } from 'next/navigation';
+import { cache } from 'react';
 
 import { getUser } from './auth';
 import { db } from './db';
@@ -16,7 +16,7 @@ export async function getAllNotes() {
   return notes;
 }
 
-export async function getNoteById(id: string) {
+export const getNoteById = cache(async (id: string) => {
   const user = await getUser();
 
   const note = await db.note.findFirst({
@@ -28,47 +28,7 @@ export async function getNoteById(id: string) {
   }
 
   return note;
-}
-
-export async function createNote({
-  html,
-  text,
-  title,
-}: Pick<Note, 'html' | 'text' | 'title'>) {
-  const user = await getUser();
-
-  if (!user?.email) {
-    throw new Error('Unable to create Note');
-  }
-
-  const note = await db.note.create({
-    data: { html, text, title, user: { connect: { email: user.email } } },
-  });
-
-  return note;
-}
-
-export async function deleteNote(id: string) {
-  await getUser();
-  await db.note.delete({ where: { id } });
-}
-
-export async function updateNote({
-  id,
-  html,
-  text,
-  title,
-}: Pick<Note, 'id' | 'html' | 'text' | 'title'>) {
-  await getUser();
-  const data = title ? { title } : { html, text };
-
-  const note = await db.note.update({
-    where: { id },
-    data,
-  });
-
-  return note;
-}
+});
 
 export async function searchNotes(query: string | string[] | undefined) {
   if (!query) return null;

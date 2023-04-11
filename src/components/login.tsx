@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/react';
 
 export default function Login({ text = '' }) {
   function login() {
-    signIn('auth0', { callbackUrl: '/' });
+    signIn('auth0');
   }
 
   return (
