@@ -17,6 +17,10 @@ const twConfig: Config = {
       borderColor: ({ theme }) => ({
         DEFAULT: theme('colors.slate.700'),
       }),
+
+      transitionTimingFunction: {
+        DEFAULT: 'linear',
+      },
     },
   },
 

@@ -1,7 +1,7 @@
 'use client';
 
+import clsx from 'clsx';
 import { usePathname, useRouter } from 'next/navigation';
-import { twMerge } from 'tailwind-merge';
 
 import type { RCProps } from '@/lib/types';
 
@@ -17,7 +17,7 @@ export function NoteListContainer({ children }: RCProps) {
 
   return (
     <aside
-      className={twMerge(
+      className={clsx(
         'sticky top-0 h-screen w-full overflow-y-auto border-r scrollbar-thin scrollbar-thumb-slate-800 lg:w-96',
         pathName.includes('/note') && 'max-lg:hidden'
       )}

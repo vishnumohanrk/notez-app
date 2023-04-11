@@ -33,7 +33,7 @@ export function EditorToolbar({ editor }: { editor: Editor }) {
   return (
     <Toolbar.Root
       aria-label="Formatting options"
-      className="sticky top-0 flex h-[4.5rem] flex-nowrap items-center gap-2 overflow-auto border-b bg-slate-800 px-4 scrollbar-none lg:h-14 [&>*]:shrink-0"
+      className="sticky top-0 z-10 flex h-[4.5rem] flex-nowrap items-center gap-2 overflow-auto border-b bg-slate-800 px-4 scrollbar-none lg:h-14 [&>*]:shrink-0"
     >
       <div>
         <EditorButton

@@ -49,7 +49,7 @@ export const NoteTitle = memo(({ noteId, text }: EditTitleProps) => {
         type="button"
         onClick={toggle}
         title={isEditing ? 'Save' : 'Edit Note Title'}
-        className="ml-1 h-12 rounded-md border px-3 transition-colors hover:bg-slate-800"
+        className="ml-1 h-12 rounded-md border px-3 transition-colors focus-visible:bg-slate-800 hover:bg-slate-800"
       >
         <Icon className="h-5 w-5" />
       </button>

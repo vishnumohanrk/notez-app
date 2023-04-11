@@ -7,7 +7,7 @@ export function NoteItem({ id, content, createdAt, title }: Note) {
     <li>
       <Link
         href={`/note/${id}`}
-        className="flex flex-col rounded-md border p-4 text-slate-400 transition-colors hover:bg-slate-800"
+        className="flex flex-col rounded-md border p-4 text-slate-400 transition-colors focus-visible:bg-slate-800 hover:bg-slate-800"
       >
         <h2 className="mb-1 truncate text-2xl font-semibold text-slate-50">
           {title}
