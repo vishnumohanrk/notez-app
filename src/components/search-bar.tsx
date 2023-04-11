@@ -1,7 +1,13 @@
 import { Search } from 'lucide-react';
 import { useRef } from 'react';
 
-export function SearchBar({ onSubmit }: { onSubmit: (val: string) => void }) {
+import type { RCProps } from '@/lib/types';
+
+type SearchBarProps = RCProps & {
+  onSubmit: (val: string) => void;
+};
+
+export function SearchBar({ onSubmit, children }: SearchBarProps) {
   const ref = useRef<HTMLInputElement>(null);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -26,7 +32,7 @@ export function SearchBar({ onSubmit }: { onSubmit: (val: string) => void }) {
         type="search"
         minLength={3}
         placeholder="Search Notes"
-        className="h-12 w-full rounded-md bg-slate-800 pl-14 pr-4 focus:bg-slate-900"
+        className="h-12 w-full rounded-md bg-slate-800 pl-14 pr-12 focus:bg-slate-900"
       />
       <button
         type="submit"
@@ -35,6 +41,7 @@ export function SearchBar({ onSubmit }: { onSubmit: (val: string) => void }) {
       >
         <Search size={20} />
       </button>
+      {children}
     </form>
   );
 }

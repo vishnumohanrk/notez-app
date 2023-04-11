@@ -1,5 +1,6 @@
 import { NoteListContainer } from '@/components/note-list-container';
 import { NotePageContainer } from '@/components/note-page-container';
+import { UserProfile } from '@/components/user-profile';
 
 export default function AppLayout({
   listSlot,
@@ -10,7 +11,10 @@ export default function AppLayout({
 }) {
   return (
     <div className="flex">
-      <NoteListContainer>{listSlot}</NoteListContainer>
+      {/* @ts-expect-error Async Server Component */}
+      <NoteListContainer userProfile={<UserProfile />}>
+        {listSlot}
+      </NoteListContainer>
       <NotePageContainer>{noteSlot}</NotePageContainer>
     </div>
   );

@@ -7,7 +7,11 @@ import type { RCProps } from '@/lib/types';
 
 import { SearchBar } from './search-bar';
 
-export function NoteListContainer({ children }: RCProps) {
+type Props = RCProps & {
+  userProfile: React.ReactNode;
+};
+
+export function NoteListContainer({ children, userProfile }: Props) {
   const router = useRouter();
   const pathName = usePathname();
 
@@ -22,7 +26,7 @@ export function NoteListContainer({ children }: RCProps) {
         pathName.includes('/note') && 'max-lg:hidden'
       )}
     >
-      <SearchBar onSubmit={handleSubmit} />
+      <SearchBar onSubmit={handleSubmit}>{userProfile}</SearchBar>
       {children}
     </aside>
   );

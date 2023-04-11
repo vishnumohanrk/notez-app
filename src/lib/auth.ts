@@ -1,4 +1,5 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { redirect } from 'next/navigation';
 import type { NextAuthOptions } from 'next-auth';
 import { getServerSession } from 'next-auth';
 import Auth0Provider from 'next-auth/providers/auth0';
@@ -19,5 +20,10 @@ export const authOptions: NextAuthOptions = {
 
 export async function getUser() {
   const session = await getServerSession(authOptions);
-  return session?.user;
+
+  if (!session) {
+    redirect('/login');
+  }
+
+  return session.user;
 }
