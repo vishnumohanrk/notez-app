@@ -1,3 +1,5 @@
+// @ts-check
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -5,6 +7,13 @@ const nextConfig = {
   experimental: {
     appDir: true,
     typedRoutes: true,
+  },
+
+  async rewrites() {
+    return [
+      { source: '/note', destination: '/' },
+      { source: '/note/all', destination: '/' },
+    ];
   },
 };
 
