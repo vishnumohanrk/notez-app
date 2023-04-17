@@ -9,7 +9,7 @@ export function Login() {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: process.env.NEXT_PUBLIC_VERCEL_URL,
+        redirectTo: `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/`,
       },
     });
   }

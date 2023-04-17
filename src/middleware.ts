@@ -15,7 +15,7 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getSession();
 
   const isLoggedIn = !!session?.user.email;
-  const isAuthPage = ['/login', '/logged-out'].includes(pathname);
+  const isAuthPage = pathname === '/login';
 
   if (isAuthPage && isLoggedIn) {
     return NextResponse.redirect(new URL('/', req.url));
