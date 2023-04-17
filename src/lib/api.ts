@@ -25,11 +25,15 @@ export async function getRouteHandlerSBAndUser() {
   return { supabase, user: session.user };
 }
 
-export async function getAllNotes() {
-  const supabase = createServerComponentSupabaseClient<Database>({
+function getSupabaseRSC() {
+  return createServerComponentSupabaseClient<Database>({
     headers,
     cookies,
   });
+}
+
+export async function getAllNotes() {
+  const supabase = getSupabaseRSC();
 
   const { data: notes } = await supabase
     .from('notes')
@@ -40,16 +44,31 @@ export async function getAllNotes() {
 }
 
 export async function getNoteById(id: string) {
-  const supabase = createServerComponentSupabaseClient<Database>({
-    headers,
-    cookies,
-  });
+  const supabase = getSupabaseRSC();
 
   const { data } = await supabase.from('notes').select().match({ id }).single();
 
   if (!data) {
     notFound();
   }
+
+  return data;
+}
+
+export async function searchNotes(query: string | string[] | undefined) {
+  if (!query) return null;
+
+  const text = decodeURIComponent(typeof query === 'string' ? query : query[0]);
+  const search = text.replace(' ', '|');
+
+  const supabase = getSupabaseRSC();
+
+  const { data, error } = await supabase
+    .from('notes')
+    .select()
+    .textSearch('text', search);
+
+  if (error) return null;
 
   return data;
 }

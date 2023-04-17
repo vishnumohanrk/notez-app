@@ -3,15 +3,15 @@ import { useRef } from 'react';
 
 import { UserProfile } from './user-profile';
 
-export function SearchBar() {
+export function SearchBar({ submit }: { submit: (val: string) => void }) {
   const ref = useRef<HTMLInputElement>(null);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const inp = ref.current?.value;
 
-    if (inp && inp.length > 3) {
-      console.log(inp);
+    if (inp && inp.length >= 3) {
+      submit(inp);
     }
   }
 

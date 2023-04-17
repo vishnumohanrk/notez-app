@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 
 import { ScrollArea } from '../shared/scroll-area';
@@ -12,6 +12,7 @@ type MainLayoutProps = {
 };
 
 export function MainLayout({ children, noteList }: MainLayoutProps) {
+  const router = useRouter();
   const pathName = usePathname();
 
   const styles = useMemo(() => {
@@ -26,11 +27,15 @@ export function MainLayout({ children, noteList }: MainLayoutProps) {
     };
   }, [pathName]);
 
+  function handleSubmit(val: string) {
+    router.push(`/note/search?query=${val}`);
+  }
+
   return (
     <div className="flex">
       <ScrollArea rootClassName={styles.aside}>
         <aside className="p-4">
-          <SearchBar />
+          <SearchBar submit={handleSubmit} />
           {noteList}
         </aside>
       </ScrollArea>
