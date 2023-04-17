@@ -9,10 +9,10 @@ const nextConfig = {
     typedRoutes: true,
   },
 
-  async rewrites() {
+  async redirects() {
     return [
-      { source: '/note', destination: '/' },
-      { source: '/note/all', destination: '/' },
+      { source: '/note', destination: '/', permanent: true },
+      { source: '/note/all', destination: '/', permanent: true },
     ];
   },
 };

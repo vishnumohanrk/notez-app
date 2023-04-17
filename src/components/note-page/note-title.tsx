@@ -4,18 +4,21 @@
 import { Check, Edit2 } from 'lucide-react';
 import { memo, useRef, useState } from 'react';
 
+import { useMutation } from '@/hooks/use-mutation';
 import { TITLE_CLASS } from '@/lib/utils';
 
 import { Header } from './header';
 
 type EditTitleProps = {
   text: string;
-  noteId: string;
+  noteId: number;
 };
 
-export const NoteTitle = memo(({ text }: EditTitleProps) => {
+export const NoteTitle = memo(({ text, noteId }: EditTitleProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isEditing, setIsEditing] = useState(false);
+
+  const { isMutating, mutate } = useMutation();
 
   function toggle() {
     const inp = ref.current?.value;
@@ -23,7 +26,10 @@ export const NoteTitle = memo(({ text }: EditTitleProps) => {
     if (isEditing) {
       setIsEditing(false);
       if (inp && inp !== text) {
-        console.log(inp);
+        mutate(`/api/note/${noteId}`, {
+          method: 'PUT',
+          body: JSON.stringify({ title: inp }),
+        });
       }
     } else {
       setIsEditing(true);
@@ -33,7 +39,7 @@ export const NoteTitle = memo(({ text }: EditTitleProps) => {
   const Icon = isEditing ? Check : Edit2;
 
   return (
-    <Header>
+    <Header className={isMutating ? 'pointer-events-none opacity-50' : ''}>
       {isEditing ? (
         <input
           required

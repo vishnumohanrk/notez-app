@@ -6,5 +6,13 @@ type TimeCompProps = {
 };
 
 export function Time({ date, className }: TimeCompProps) {
-  return <time className={className}>{format(date, 'MMM d')}</time>;
+  return (
+    <time
+      className={className}
+      title={date.toUTCString()}
+      dateTime={date.toUTCString()}
+    >
+      {format(date, 'MMM d')}
+    </time>
+  );
 }

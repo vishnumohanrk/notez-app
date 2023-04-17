@@ -1,15 +1,22 @@
 import { NotePage } from '@/components/note-page';
 import { DeleteNote } from '@/components/note-page/delete-note';
 import { Time } from '@/components/shared/time';
+import { getNoteById } from '@/lib/api';
 
-export default function NoteIDPage({ params }: { params: { id: string } }) {
+type NoteIDPageProps = {
+  params: { id: string };
+};
+
+export default async function NoteIDPage({ params }: NoteIDPageProps) {
+  const note = await getNoteById(params.id);
+
   return (
-    <NotePage html="<h2>Note Content</h2>" id="12" title="Lorem Ipsum">
+    <NotePage html={note.html} id={note.id} title={note.title}>
       <div className="mb-2 mt-3 flex justify-between text-sm text-neutral-400">
         <p>
-          Last Modified on <Time date={new Date()} className="" />
+          Last Modified on <Time date={new Date(note.updated_at)} />
         </p>
-        <DeleteNote id="1" />
+        <DeleteNote id={note.id} />
       </div>
     </NotePage>
   );

@@ -1,17 +1,22 @@
+/* eslint-disable @next/next/no-img-element */
 import * as Popover from '@radix-ui/react-popover';
+
+import { useUser } from '@/hooks/use-user';
 
 import { Button } from '../shared/button';
 
 export function UserProfile() {
-  const name = 'Lorem Ipsum';
-  const email = 'Lorem Ipsum';
-  const image = 'https://picsum.photos/id/32/100';
+  const { logout, user } = useUser();
+
+  if (!user) return null;
+
+  const { avatar_url, email, name } = user;
 
   return (
     <Popover.Root>
       <Popover.Trigger className="absolute right-0 h-12 px-2">
         <img
-          src={image}
+          src={avatar_url}
           alt={`${name} profile pic`}
           className="h-8 w-8 rounded-full"
         />
@@ -23,17 +28,17 @@ export function UserProfile() {
         >
           <div className="flex gap-4 font-semibold">
             <img
-              src={image}
+              src={avatar_url}
               alt={`${name} profile pic`}
               className="h-12 w-12 rounded-full"
             />
             <div>
-              <p className="text-lg font-medium">{name}</p>
-              <p className="text-sm text-neutral-400">{email}</p>
+              <p className="truncate font-medium">{name}</p>
+              <p className="truncate text-sm text-neutral-400">{email}</p>
             </div>
           </div>
           <div className="mt-4 flex justify-end">
-            <Button variant="secondary" className="text-sm">
+            <Button variant="secondary" className="text-sm" onClick={logout}>
               Log Out
             </Button>
           </div>
