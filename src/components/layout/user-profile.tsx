@@ -1,14 +1,12 @@
-import { Button } from '../shared/button';
+import { getCurrentUser } from '@/lib/session';
+
+import { SignOut } from '../shared/auth-button';
 import { IconButton } from '../shared/icon-button';
 import { Popover } from '../shared/popover';
 import { UserAvatar } from '../shared/user-avatar';
 
-export function UserProfile() {
-  const user = {
-    name: 'Lorem Ipsum',
-    email: 'loremipsum@lorem.com',
-    image: 'https://picsum.photos/id/32/100',
-  };
+export async function UserProfile() {
+  const user = await getCurrentUser();
 
   if (!user) return null;
 
@@ -29,9 +27,7 @@ export function UserProfile() {
         </div>
       </div>
       <div className="mt-4 flex justify-end">
-        <Button variant="secondary" className="text-sm">
-          Sign Out
-        </Button>
+        <SignOut />
       </div>
     </Popover>
   );
