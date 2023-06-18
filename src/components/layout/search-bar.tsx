@@ -1,5 +1,7 @@
 import { Search } from 'lucide-react';
 
+import { IconButton } from '../shared/icon-button';
+
 export function SearchBar() {
   return (
     <>
@@ -16,13 +18,9 @@ export function SearchBar() {
         placeholder="Search Notes"
         className="h-12 w-full rounded-md bg-neutral-800 px-12 focus:bg-neutral-950 focus:outline-none focus:ring-2 focus:ring-neutral-700 focus:ring-offset-2 focus:ring-offset-neutral-950"
       />
-      <button
-        type="submit"
-        title="Search"
-        className="absolute left-0 inline-flex h-12 w-12 items-center justify-center"
-      >
+      <IconButton type="submit" title="Search" className="absolute left-0">
         <Search size={20} />
-      </button>
+      </IconButton>
     </>
   );
 }

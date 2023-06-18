@@ -15,9 +15,7 @@ export function ScrollArea({
   orientation = 'vertical',
 }: ScrollAreaProps) {
   return (
-    <RadixScrollArea.Root
-      className={twMerge('relative overflow-hidden', className)}
-    >
+    <RadixScrollArea.Root className={twMerge('overflow-hidden', className)}>
       <RadixScrollArea.Viewport className="h-full w-full">
         {children}
       </RadixScrollArea.Viewport>
@@ -25,8 +23,8 @@ export function ScrollArea({
         orientation={orientation}
         className={twMerge(
           'touch-none select-none',
-          orientation === 'vertical' && 'w-2',
-          orientation === 'horizontal' && 'h-1.5'
+          orientation === 'vertical' && 'w-1.5',
+          orientation === 'horizontal' && 'flex h-1.5'
         )}
       >
         <RadixScrollArea.ScrollAreaThumb className="relative rounded-full bg-neutral-700" />

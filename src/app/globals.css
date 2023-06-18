@@ -6,4 +6,8 @@
   :root {
     color-scheme: dark;
   }
+
+  .toolbar-item svg {
+    @apply lg:h-5 lg:w-5;
+  }
 }

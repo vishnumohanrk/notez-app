@@ -15,11 +15,11 @@ export function MainLayout({ children, navBar }: MainLayoutProps) {
 
   const styles = useMemo(() => {
     return {
-      aside: `h-[100dvh] w-full shrink-0 lg:w-96 lg:border-r ${
+      aside: `!sticky top-0 h-[100dvh] w-full shrink-0 lg:w-96 lg:border-r ${
         pathName.includes('/note') ? 'max-lg:hidden' : ''
       }`,
 
-      main: `mx-auto max-w-screen-xl p-4 ${
+      main: `mx-auto max-w-screen-xl grow p-4 ${
         pathName.includes('/note') ? '' : 'max-lg:hidden'
       }`,
     };
