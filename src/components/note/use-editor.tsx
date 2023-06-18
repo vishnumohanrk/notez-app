@@ -9,8 +9,6 @@ import { useEditor as useTipTap } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
 const editorOptions: Partial<EditorOptions> = {
-  autofocus: 'end',
-
   extensions: [
     StarterKit,
     Highlight,
@@ -24,7 +22,7 @@ const editorOptions: Partial<EditorOptions> = {
   editorProps: {
     attributes: {
       class:
-        'prose prose-invert max-w-none p-4 focus:outline-none prose-a:cursor-pointer',
+        'prose prose-invert max-w-none p-4 focus:outline-none prose-a:cursor-pointer min-h-[calc(100dvh-12.75rem)]',
     },
   },
 };

@@ -1,3 +1,14 @@
+import Link from 'next/link';
+
+import { PageCenter } from '@/components/shared/page-center';
+
 export default function AppHome() {
-  return <p>Home Page</p>;
+  return (
+    <PageCenter text="Select Any Note to View/Edit">
+      or&nbsp;
+      <Link href="/note/new" className="font-medium underline">
+        create a new Note
+      </Link>
+    </PageCenter>
+  );
 }

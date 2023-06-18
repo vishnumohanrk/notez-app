@@ -1,22 +1,18 @@
 import { Search } from 'lucide-react';
 
+import { FormInput } from '../shared/form-input';
 import { IconButton } from '../shared/icon-button';
 
 export function SearchBar() {
   return (
     <>
-      <label htmlFor="search" className="sr-only">
-        Search Notes
-      </label>
-      <input
-        required
-        id="search"
-        name="query"
+      <FormInput
+        name="search"
         type="search"
         minLength={3}
+        className="px-12"
         autoComplete="off"
-        placeholder="Search Notes"
-        className="h-12 w-full rounded-md bg-neutral-800 px-12 focus:bg-neutral-950 focus:outline-none focus:ring-2 focus:ring-neutral-700 focus:ring-offset-2 focus:ring-offset-neutral-950"
+        label="Search Notes"
       />
       <IconButton type="submit" title="Search" className="absolute left-0">
         <Search size={20} />
