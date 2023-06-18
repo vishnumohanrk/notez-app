@@ -1,49 +1,40 @@
-/* eslint-disable @next/next/no-img-element */
-import * as Popover from '@radix-ui/react-popover';
-
-import { useUser } from '@/hooks/use-user';
-
 import { Button } from '../shared/button';
+import { Popover } from '../shared/popover';
+import { UserAvatar } from '../shared/user-avatar';
 
 export function UserProfile() {
-  const { logout, user } = useUser();
+  const user = {
+    name: 'Lorem Ipsum',
+    email: 'loremipsum@lorem.com',
+    image: 'https://picsum.photos/id/32/100',
+  };
 
   if (!user) return null;
 
-  const { avatar_url, email, name } = user;
-
   return (
-    <Popover.Root>
-      <Popover.Trigger className="absolute right-0 h-12 px-2">
-        <img
-          src={avatar_url}
-          alt={`${name} profile pic`}
-          className="h-8 w-8 rounded-full"
-        />
-      </Popover.Trigger>
-      <Popover.Portal>
-        <Popover.Content
-          align="end"
-          className="mt-2 w-[calc(100vw-2rem)] rounded-md border bg-neutral-900 p-4 lg:w-[22rem]"
+    <Popover
+      contentClassName="my-2 w-[calc(100vw-2rem)] rounded-md border bg-neutral-900 p-4 lg:w-[21.95rem]"
+      trigger={
+        <button
+          type="button"
+          className="absolute right-0 inline-flex h-12 w-12 items-center justify-center"
         >
-          <div className="flex gap-4 font-semibold">
-            <img
-              src={avatar_url}
-              alt={`${name} profile pic`}
-              className="h-12 w-12 rounded-full"
-            />
-            <div>
-              <p className="truncate font-medium">{name}</p>
-              <p className="truncate text-sm text-neutral-400">{email}</p>
-            </div>
-          </div>
-          <div className="mt-4 flex justify-end">
-            <Button variant="secondary" className="text-sm" onClick={logout}>
-              Log Out
-            </Button>
-          </div>
-        </Popover.Content>
-      </Popover.Portal>
-    </Popover.Root>
+          <UserAvatar {...user} className="h-8 w-8" />
+        </button>
+      }
+    >
+      <div className="flex items-center gap-4 font-semibold">
+        <UserAvatar {...user} className="h-14 w-14 shrink-0" />
+        <div>
+          <p className="truncate font-medium">{user.name}</p>
+          <p className="truncate text-sm text-neutral-400">{user.email}</p>
+        </div>
+      </div>
+      <div className="mt-6 flex justify-end">
+        <Button variant="secondary" className="text-sm">
+          Sign Out
+        </Button>
+      </div>
+    </Popover>
   );
 }

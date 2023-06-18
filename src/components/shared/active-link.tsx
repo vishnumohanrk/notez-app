@@ -4,23 +4,27 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { twMerge } from 'tailwind-merge';
 
-type ActiveLinkProps = React.ComponentProps<typeof Link> & {
-  activeClassName?: string;
+type ActiveLinkProps = {
+  className: string;
+  activeClassName: string;
+  children: React.ReactNode;
+  href: React.ComponentProps<typeof Link>['href'];
 };
 
 export function ActiveLink({
   href,
+  children,
   className,
   activeClassName,
-  ...rest
 }: ActiveLinkProps) {
   const pathName = usePathname();
 
   return (
     <Link
-      {...rest}
       href={href}
       className={twMerge(className, pathName === href && activeClassName)}
-    />
+    >
+      {children}
+    </Link>
   );
 }

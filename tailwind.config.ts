@@ -1,9 +1,8 @@
-import typography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 const twConfig: Config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
 
   theme: {
     extend: {
@@ -11,17 +10,17 @@ const twConfig: Config = {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },
 
-      borderColor: ({ theme }) => ({
-        DEFAULT: theme('colors.neutral.700'),
-      }),
-
       transitionTimingFunction: {
         DEFAULT: 'linear',
       },
+
+      borderColor: ({ theme }) => ({
+        DEFAULT: theme('colors.neutral.700'),
+      }),
     },
   },
 
-  plugins: [typography],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 };
 
 export default twConfig;

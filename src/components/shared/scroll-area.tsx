@@ -1,32 +1,36 @@
-import * as RadixScroll from '@radix-ui/react-scroll-area';
+'use client';
+
+import * as RadixScrollArea from '@radix-ui/react-scroll-area';
 import { twMerge } from 'tailwind-merge';
 
 type ScrollAreaProps = {
-  rootClassName: string;
+  className: string;
   children: React.ReactNode;
-  orientation?: RadixScroll.ScrollAreaScrollbarProps['orientation'];
+  orientation?: RadixScrollArea.ScrollAreaScrollbarProps['orientation'];
 };
 
 export function ScrollArea({
   children,
-  rootClassName,
+  className,
   orientation = 'vertical',
 }: ScrollAreaProps) {
   return (
-    <RadixScroll.Root className={rootClassName}>
-      <RadixScroll.Viewport className="h-full w-full">
+    <RadixScrollArea.Root
+      className={twMerge('relative overflow-hidden', className)}
+    >
+      <RadixScrollArea.Viewport className="h-full w-full">
         {children}
-      </RadixScroll.Viewport>
-      <RadixScroll.Scrollbar
+      </RadixScrollArea.Viewport>
+      <RadixScrollArea.Scrollbar
         orientation={orientation}
         className={twMerge(
           'touch-none select-none',
-          orientation === 'vertical' && 'w-1.5',
-          orientation === 'horizontal' && 'flex h-1.5'
+          orientation === 'vertical' && 'w-2',
+          orientation === 'horizontal' && 'h-1.5'
         )}
       >
-        <RadixScroll.ScrollAreaThumb className="relative rounded-full bg-neutral-700" />
-      </RadixScroll.Scrollbar>
-    </RadixScroll.Root>
+        <RadixScrollArea.ScrollAreaThumb className="relative rounded-full bg-neutral-700" />
+      </RadixScrollArea.Scrollbar>
+    </RadixScrollArea.Root>
   );
 }

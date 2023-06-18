@@ -1,7 +1,6 @@
 import { MainLayout } from '@/components/layout';
-import { NoteListContent } from '@/components/layout/note-list-content';
+import { NavBar } from '@/components/layout/nav-bar';
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  // @ts-expect-error async comp
-  return <MainLayout noteList={<NoteListContent />}>{children}</MainLayout>;
+export default function NoteGroupLayout({ children }: React.PropsWithChildren) {
+  return <MainLayout navBar={<NavBar />}>{children}</MainLayout>;
 }
