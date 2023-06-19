@@ -33,7 +33,7 @@ export function EditorToolbar({ editor }: { editor: Editor }) {
   return (
     <ScrollArea
       orientation="horizontal"
-      className="!sticky top-0 z-10 border-b bg-neutral-800"
+      className="!sticky top-0 z-10 rounded-t-md border-b bg-neutral-800"
     >
       <Toolbar
         aria-label="Formatting options"

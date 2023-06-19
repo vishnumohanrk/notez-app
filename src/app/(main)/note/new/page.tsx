@@ -1,28 +1,37 @@
 import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
 
 import { NoteHeader } from '@/components/note/header';
-import { ButtonGroup } from '@/components/shared/button-group';
-import { FormButton } from '@/components/shared/form-button';
 import { FormInput } from '@/components/shared/form-input';
+import { db } from '@/lib/db';
+import { getAuthUserId } from '@/lib/session';
+import type { TForm } from '@/types';
 
 const NoteEditor = dynamic(() => import('@/components/note/editor'));
 
+async function createNote(data: TForm) {
+  'use server';
+  const userId = await getAuthUserId();
+  const note = await db.note.create({
+    data: { userId, ...data },
+    select: { id: true },
+  });
+
+  redirect(`/note/${note.id}`);
+}
+
 export default function NewNotePage() {
   return (
-    <>
+    <NoteEditor type="create" action={createNote}>
       <NoteHeader>
         <FormInput
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           name="title"
-          className="px-4"
           label="Enter Note Title"
+          className="px-4 text-2xl font-bold"
         />
       </NoteHeader>
-      <NoteEditor />
-      <ButtonGroup className="mt-4">
-        <FormButton variant="primary">Create Note</FormButton>
-      </ButtonGroup>
-    </>
+    </NoteEditor>
   );
 }

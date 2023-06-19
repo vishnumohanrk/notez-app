@@ -4,4 +4,4 @@ import type { NoteListSelect } from '@/lib/constants';
 
 export type TNoteListSelect = Pick<Note, keyof typeof NoteListSelect>;
 
-export type TForm = Pick<Note, 'title' | 'noteJSON' | 'noteText'>;
+export type TForm = Pick<Note, 'title' | 'noteText' | 'noteHTML'>;
