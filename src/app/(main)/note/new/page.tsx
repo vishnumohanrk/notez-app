@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 
-import NoteEditor from '@/components/note/editor';
+import { NoteEditor } from '@/components/note/editor';
 import { NoteHeader } from '@/components/note/header';
+import { SubmitButton } from '@/components/note/submit';
 import { FormInput } from '@/components/shared/form-input';
 import { db } from '@/lib/db';
 import { getAuthUserId } from '@/lib/session';
@@ -20,7 +21,11 @@ async function createNote(data: TForm) {
 
 export default function NewNotePage() {
   return (
-    <NoteEditor type="create" action={createNote}>
+    <NoteEditor
+      type="create"
+      action={createNote}
+      footer={<SubmitButton text="Create Note" />}
+    >
       <NoteHeader>
         <FormInput
           // eslint-disable-next-line jsx-a11y/no-autofocus

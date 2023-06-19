@@ -5,10 +5,9 @@ import { EditorContent } from '@tiptap/react';
 import type { TForm } from '@/types';
 
 import { EditorToolbar } from './editor-toolbar';
-import { SubmitButton } from './submit';
 import { useEditor } from './use-editor';
 
-type Props =
+type Props = { footer: React.ReactNode } & (
   | {
       type: 'update';
       children?: never;
@@ -20,15 +19,17 @@ type Props =
       children: React.ReactNode;
       initContent?: never;
       action: (data: TForm) => Promise<void>;
-    };
+    }
+);
 
-export default function NoteEditor({
+export function NoteEditor({
   type,
   action,
+  footer,
   children,
   initContent,
 }: Props) {
-  const editor = useEditor({ content: initContent || '<p>Note Content</p>' });
+  const editor = useEditor({ content: initContent || '<h2>Note Content</h2>' });
 
   if (!editor) return null;
 
@@ -56,11 +57,7 @@ export default function NoteEditor({
         <EditorToolbar editor={editor} />
         <EditorContent editor={editor} />
       </div>
-      {type === 'update' ? (
-        initContent !== editor.getHTML() && <SubmitButton text="Save Changes" />
-      ) : (
-        <SubmitButton text="Create Note" />
-      )}
+      {type === 'create' ? footer : initContent !== editor.getHTML() && footer}
     </form>
   );
 }

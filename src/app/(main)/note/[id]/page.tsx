@@ -1,17 +1,16 @@
 import { revalidatePath } from 'next/cache';
-import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 
 import { DeleteNote } from '@/components/note/delete';
+import { NoteEditor } from '@/components/note/editor';
 import { NoteHeader } from '@/components/note/header';
+import { SubmitButton } from '@/components/note/submit';
 import { NoteTitle } from '@/components/note/title';
 import { Time } from '@/components/shared/time';
 import { db } from '@/lib/db';
 import { getAuthUserId } from '@/lib/session';
 import { validateOwner } from '@/lib/utils';
 import type { TForm } from '@/types';
-
-const NoteEditor = dynamic(() => import('@/components/note/editor'));
 
 type PageProps = {
   params: { id: string };
@@ -59,7 +58,12 @@ export default async function NoteIDPage({ params: { id } }: PageProps) {
         </p>
         <DeleteNote id={id} />
       </div>
-      <NoteEditor type="update" initContent={noteHTML} action={updateNote} />
+      <NoteEditor
+        type="update"
+        action={updateNote}
+        initContent={noteHTML}
+        footer={<SubmitButton text="Save Changes" />}
+      />
     </>
   );
 }
