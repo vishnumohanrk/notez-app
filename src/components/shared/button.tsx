@@ -17,7 +17,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type={type || 'button'}
         className={twMerge(
-          'inline-flex h-10 items-center justify-center gap-3 rounded-md px-8 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-950 disabled:cursor-not-allowed disabled:opacity-60',
+          'inline-flex h-12 items-center justify-center gap-3 rounded-md px-10 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neutral-950 disabled:cursor-not-allowed disabled:opacity-60',
           variant === 'primary' &&
             'bg-indigo-700 hover:bg-indigo-800 focus:ring-indigo-700',
           variant === 'secondary' &&

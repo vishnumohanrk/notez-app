@@ -2,7 +2,7 @@
 
 import { signIn, signOut } from 'next-auth/react';
 
-import { Button } from '@/components/shared/button';
+import { Button } from './button';
 
 export function SignIn({ children }: { children: React.ReactNode }) {
   function handleClick() {

@@ -1,13 +1,11 @@
-import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
+import NoteEditor from '@/components/note/editor';
 import { NoteHeader } from '@/components/note/header';
 import { FormInput } from '@/components/shared/form-input';
 import { db } from '@/lib/db';
 import { getAuthUserId } from '@/lib/session';
 import type { TForm } from '@/types';
-
-const NoteEditor = dynamic(() => import('@/components/note/editor'));
 
 async function createNote(data: TForm) {
   'use server';

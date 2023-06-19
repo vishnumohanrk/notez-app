@@ -16,7 +16,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         type={type || 'button'}
         className={twMerge(
-          'inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-700',
+          'inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-700 disabled:cursor-not-allowed disabled:opacity-60',
           className
         )}
       />

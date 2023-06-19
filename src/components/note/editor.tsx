@@ -50,7 +50,7 @@ export default function NoteEditor({
   }
 
   return (
-    <form action={submit} className="pb-20">
+    <form action={submit}>
       {children}
       <div className="rounded-md border">
         <EditorToolbar editor={editor} />

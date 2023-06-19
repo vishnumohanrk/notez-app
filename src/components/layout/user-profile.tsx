@@ -12,7 +12,7 @@ export async function UserProfile() {
 
   return (
     <Popover
-      contentClassName="my-2 w-[calc(100vw-2rem)] rounded-md border bg-neutral-900 p-4 lg:w-[21.95rem]"
+      contentClassName="mt-2 w-[calc(100vw-2rem)] rounded-md border bg-neutral-900 p-4 lg:w-[21.95rem]"
       trigger={
         <IconButton className="absolute right-0">
           <UserAvatar {...user} className="h-8 w-8" />

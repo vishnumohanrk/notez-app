@@ -23,7 +23,7 @@ export function AlertDialog({
       <Alert.Trigger asChild>{children}</Alert.Trigger>
       <Alert.Portal>
         <Alert.Overlay className="fixed inset-0 z-50 backdrop-blur animate-in fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out" />
-        <Alert.Content className="fixed inset-0 z-50 flex h-[100dvh] items-end justify-center p-4 will-change-transform animate-in fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out max-lg:slide-in-from-bottom-full max-lg:data-[state=closed]:slide-out-to-bottom-full lg:h-[75vh] lg:items-center lg:zoom-in lg:data-[state=closed]:zoom-out">
+        <Alert.Content className="fixed inset-0 z-50 flex h-[100dvh] items-end justify-center p-4 will-change-transform animate-in fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out max-md:slide-in-from-bottom-full max-md:data-[state=closed]:slide-out-to-bottom-full md:h-[75vh] md:items-center md:zoom-in md:data-[state=closed]:zoom-out">
           <div className="max-w-lg rounded-md border bg-neutral-950 p-6">
             <Alert.Title className="text-2xl font-bold">
               Are You Sure
