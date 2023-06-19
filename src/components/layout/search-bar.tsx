@@ -7,7 +7,7 @@ export function SearchBar() {
   return (
     <>
       <FormInput
-        name="search"
+        name="query"
         type="search"
         minLength={3}
         className="px-12"

@@ -12,16 +12,16 @@ if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = db;
 }
 
-// db.$use(async (params, next) => {
-//   const before = Date.now();
-//   const result = await next(params);
-//   const after = Date.now();
+db.$use(async (params, next) => {
+  const before = Date.now();
+  const result = await next(params);
+  const after = Date.now();
 
-//   console.log(
-//     `Query took ${after - before}ms - action - ${params.action} - model - ${
-//       params.model
-//     }`
-//   );
+  console.log(
+    `Query took ${after - before}ms - action - ${params.action} - model - ${
+      params.model
+    }`
+  );
 
-//   return result;
-// });
+  return result;
+});

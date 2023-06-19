@@ -18,7 +18,7 @@ export function SignIn({ children }: { children: React.ReactNode }) {
 
 export function SignOut() {
   function handleClick() {
-    signOut();
+    signOut({ callbackUrl: '/' });
   }
 
   return (
